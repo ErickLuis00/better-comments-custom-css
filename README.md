@@ -1,14 +1,14 @@
-# Better Comments Enhanced
+# Better Comments with Custom Css
 
-* Folk form [Better Comments](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments) extension.
-* Add support for markdown.
+* Folk form [Better Comments](https://github.com/lovebirdsx/better-comments-enhanced) Enhanced extension.
+* Add support for custom css styles
 
-![Markdown Preview](images/better-comments-md.PNG)
+ ![Markdown Preview](images/better-comments-md.PNG)
 
 ## Origin introduction
 
-The Better Comments extension will help you create more human-friendly comments in your code.  
-With this extension, you will be able to categorise your annotations into:
+The Better Comments extension will help you create more human-friendly comments in your code.With this extension, you will be able to categorise your annotations into:
+
 * Alerts
 * Queries
 * TODOs
@@ -16,25 +16,21 @@ With this extension, you will be able to categorise your annotations into:
 * Commented out code can also be styled to make it clear the code shouldn't be there
 * Any other comment styles you'd like can be specified in the settings
 
-![Annotated code](images/better-comments.PNG)
+ ![Annotated code](images/better-comments.PNG)
 
 ## Configuration
 
 This extension can be configured in User Settings or Workspace settings.
 
-`"better-comments.highlightMarkdown": true`  
- This setting will control whether comments in markdown files are styled using the annotation tags.
+`"better-comments.highlightMarkdown": true`This setting will control whether comments in markdown files are styled using the annotation tags.
 
-`"better-comments.multilineComments": true`  
- This setting will control whether multiline comments are styled using the annotation tags.
- When false, multiline comments will be presented without decoration.
+`"better-comments.multilineComments": true`This setting will control whether multiline comments are styled using the annotation tags.
+When false, multiline comments will be presented without decoration.
 
-`"better-comments.highlightPlainText": false`  
-This setting will control whether comments in a plain text file are styled using the annotation tags.
+`"better-comments.highlightPlainText": false`This setting will control whether comments in a plain text file are styled using the annotation tags.
 When true, the tags (defaults: `! * ? //`) will be detected if they're the first character on a line.
 
-`better-comments.tags`  
-The tags are the characters or sequences used to mark a comment for decoration.
+`better-comments.tags`The tags are the characters or sequences used to mark a comment for decoration.
 The default 5 can be modified to change the colors, and more can be added.
 
 ```json
@@ -46,7 +42,8 @@ The default 5 can be modified to change the colors, and more can be added.
     "underline": false,
     "backgroundColor": "transparent",
     "bold": false,
-    "italic": false
+    "italic": false,
+    "style": "font-size: 150%; font-weight: bold" // example only, not default.
   },
   {
     "tag": "?",
@@ -55,7 +52,8 @@ The default 5 can be modified to change the colors, and more can be added.
     "underline": false,
     "backgroundColor": "transparent",
     "bold": false,
-    "italic": false
+    "italic": false,
+    "style": "font-size: 150%; font-weight: bold" // example only, not default.
   },
   {
     "tag": "//",
@@ -169,3 +167,5 @@ The default 5 can be modified to change the colors, and more can be added.
 * Vue.js
 * XML
 * YAML
+
+
