@@ -1,4 +1,4 @@
-# Better Comments with Custom Css
+# Better Comments (Custom Css Styles + Markdown Support)
 
 * Folk form [Better Comments](https://github.com/lovebirdsx/better-comments-enhanced) Enhanced extension.
 * Add support for custom css styles
@@ -43,7 +43,7 @@ The default 5 can be modified to change the colors, and more can be added.
     "backgroundColor": "transparent",
     "bold": false,
     "italic": false,
-    "style": "font-size: 150%; font-weight: bold" // example only, not default.
+    "style": "font-size: 150%; font-weight: bold;" // example only, not default.
   },
   {
     "tag": "?",
@@ -53,7 +53,7 @@ The default 5 can be modified to change the colors, and more can be added.
     "backgroundColor": "transparent",
     "bold": false,
     "italic": false,
-    "style": "font-size: 150%; font-weight: bold" // example only, not default.
+    "style": "font-size: 150%; font-weight: bold;" // example only, not default.
   },
   {
     "tag": "//",
