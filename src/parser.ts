@@ -1,5 +1,9 @@
 import * as vscode from 'vscode';
 import { Configuration } from './configuration';
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
+
+
 
 interface IInput {
     activeEditor: vscode.TextEditor,
@@ -100,7 +104,7 @@ async function processState(input: IInput): Promise<IParserState> {
         case "tcl":
             r.ignoreFirstLine = true;
             break;
-        
+
         case "plaintext":
             r.isPlainText = true;
 
@@ -111,7 +115,7 @@ async function processState(input: IInput): Promise<IParserState> {
 
     return r;
 }
-    
+
 function genSingleLineRegex(input: IInput, s: IParserState): string {
     // if the language isn't supported, we don't need to go any further
     if (!s.supportedLanguage) {
@@ -168,7 +172,7 @@ function findSingleLineComments(input: IInput, s: IParserState): IDecoration[] {
         const matchTag = input.tags.find(item => item.tag.toLowerCase() === matchString.toLowerCase());
 
         if (matchTag) {
-            decorations.push( {
+            decorations.push({
                 type: matchTag.decoration,
                 range: new vscode.Range(startPos, endPos),
             });
@@ -181,7 +185,7 @@ function findSingleLineComments(input: IInput, s: IParserState): IDecoration[] {
 function findBlockComments(input: IInput, s: IParserState): IDecoration[] {
     // If highlight multiline is off in package.json or doesn't apply to his language, return
     if (!s.highlightMultilineComments) return [];
-    
+
     const text = input.activeEditor.document.getText(input.range);
 
     // Build up regex matcher for custom delimiter tags
@@ -223,7 +227,7 @@ function findBlockComments(input: IInput, s: IParserState): IDecoration[] {
             const matchTag = input.tags.find(item => item.tag.toLowerCase() === matchString.toLowerCase());
 
             if (matchTag) {
-                decorations.push( {
+                decorations.push({
                     type: matchTag.decoration,
                     range: new vscode.Range(startPos, endPos),
                 });
@@ -263,7 +267,7 @@ function findJSDocComments(input: IInput, s: IParserState): IDecoration[] {
         const commentBlock = match[0];
 
         // Find the line
-        let line;        
+        let line;
         while (line = commentRegEx.exec(commentBlock)) {
             const startPos = input.activeEditor.document.positionAt(offset + match.index + line.index + line[2].length);
             const endPos = input.activeEditor.document.positionAt(offset + match.index + line.index + line[0].length);
@@ -291,7 +295,7 @@ function findMarkdownTextComments(input: IInput): IDecoration[] {
     if (!input.contributions.highlightMarkdown) {
         return [];
     }
-    
+
     const characters: Array<string> = [];
     for (const commentTag of input.tags) {
         characters.push(commentTag.escapedTag);
@@ -316,7 +320,7 @@ function findMarkdownTextComments(input: IInput): IDecoration[] {
         const matchTag = input.tags.find(item => item.tag.toLowerCase() === matchString.toLowerCase());
 
         if (matchTag) {
-            decorations.push( {
+            decorations.push({
                 type: matchTag.decoration,
                 range: new vscode.Range(startPos, endPos),
             });
@@ -341,7 +345,7 @@ async function findMarkdownCodeComments(input: IInput): Promise<IDecoration[]> {
         const codeBlock = match[2];
         const languageCode = match[1];
         const codeBLockIndex = match[0].indexOf(codeBlock);
-        
+
         const startPos = input.activeEditor.document.positionAt(match.index + codeBLockIndex);
         const endPos = input.activeEditor.document.positionAt(match.index + codeBLockIndex + match[2].length);
         const newInput: IInput = {
@@ -385,11 +389,11 @@ export class Parser {
             if (item.strikethrough) {
                 options.textDecoration += "line-through";
             }
-            
+
             if (item.underline) {
                 options.textDecoration += " underline";
             }
-            
+
             if (item.bold) {
                 options.fontWeight = "bold";
             }
@@ -397,6 +401,14 @@ export class Parser {
             if (item.italic) {
                 options.fontStyle = "italic";
             }
+
+            // Custom css styles.
+            if (item.style) {
+                const style = css(item.style);
+                options.textDecoration += "none;"
+                options.textDecoration += style.styles.replace(/(\r\n|\n|\r)/gm, "");
+            }
+
 
             const escapedSequence = item.tag.replace(/([()[{*+.$^\\|?])/g, '\\$1');
             this.tags.push({
@@ -408,11 +420,13 @@ export class Parser {
         }
     }
 
+
+
     private genInput(activeEditor: vscode.TextEditor): IInput {
         return {
             activeEditor: activeEditor,
             tags: this.tags,
-            contributions: this.contributions,  
+            contributions: this.contributions,
             configuration: this.configuration,
             languageCode: activeEditor.document.languageId,
         };

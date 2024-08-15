@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-        "strict": true,   /* enable all strict type-checking options */
+		"strict": true, /* enable all strict type-checking options */
 		"alwaysStrict": true,
 		"module": "commonjs",
 		"target": "es6",
@@ -8,12 +8,14 @@
 		"noImplicitAny": true,
 		"noImplicitReturns": true,
 		"lib": [
-			"es6"
+			"es6",
+			"dom"
 		],
 		"sourceMap": true,
 		"strictNullChecks": true,
 		"rootDir": "src",
-        "noUnusedLocals": true /* Report errors on unused locals. */
+		"noUnusedLocals": true, /* Report errors on unused locals. */
+		"skipLibCheck": true
 	},
 	"exclude": [
 		"src/test*",

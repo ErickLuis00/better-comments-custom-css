@@ -9,7 +9,7 @@ interface Contributions {
     highlightMarkdown: boolean;
     multilineComments: boolean;
     useJSDocStyle: boolean;
-    highlightPlainText: boolean;    
+    highlightPlainText: boolean;
     tags: [{
         tag: string;
         color: string;
@@ -17,6 +17,7 @@ interface Contributions {
         underline: boolean;
         bold: boolean;
         italic: boolean;
+        style: string;
         backgroundColor: string;
     }];
 }
