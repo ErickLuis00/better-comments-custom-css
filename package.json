@@ -3,7 +3,7 @@
     "displayName": "Better Comments (Custom CSS + Markdown Support)",
     "icon": "icon.png",
     "description": "Improve your code commenting by annotating with alert, informational, TODOs, and more! Includes custom css styles and markdown support.",
-    "version": "1.0.3",
+    "version": "1.0.0",
     "publisher": "erickluis",
     "author": {
         "name": "erickluis"
