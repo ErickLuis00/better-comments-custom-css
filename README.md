@@ -3,7 +3,7 @@
 * Folk form [Better Comments](https://github.com/lovebirdsx/better-comments-enhanced) Enhanced extension.
 * Add support for custom css styles
 
- ![Markdown Preview](images/better-comments-md.PNG)
+add img here
 
 ## Origin introduction
 
